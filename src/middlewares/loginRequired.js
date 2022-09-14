@@ -1,25 +1,24 @@
 import jwt from 'jsonwebtoken';
-import User from '../models/User';
+import User from '../database/models/UserModel';
 
 export default async (req, res, next) => {
   const { authorization } = req.headers;
 
-  if (!authorization) return res.status(401).json({ errors: ['Login required'] });
+  if (!authorization) return res.status(401).json({ errors: ['Login required'], login: false });
 
   const [, token] = authorization.split(' ');
-
   try {
     const dados = jwt.verify(token, process.env.TOKEN_SECRET);
     const { id, email } = dados;
 
-    const user = await User.findOne({ where: { id, email } });
+    const user = new User({ id, email });
+    await user.validateToken();
 
-    if (!user) return res.status(401).json({ errors: ['Usuário inválido.'] });
+    if (!user) return res.status(401).json({ errors: ['Usuário inválido.'], login: false });
 
-    req.userId = id;
-    req.userEmail = email;
+    req.userInfo = user.user;
     return next();
   } catch (error) {
-    return res.status(401).json({ errors: ['Token expirado ou inválido.'] });
+    return res.status(401).json({ errors: ['Token expirado ou inválido.'], login: false });
   }
 };

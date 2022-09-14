@@ -1,12 +1,13 @@
-import Sequelize from 'sequelize';
-import databaseConfig from '../config/database';
-import Aluno from '../models/Aluno';
-import User from '../models/User';
-import Photo from '../models/Photo';
+import mongoose from 'mongoose';
 
-const models = [Aluno, User, Photo];
+mongoose.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const connection = new Sequelize(databaseConfig);
+import UserModel from './models/UserModel';
 
-models.forEach((model) => model.init(connection));
-models.forEach((model) => model.associate && model.associate(connection.models));
+/* eslint-disable */
+class DB {
+
+
+}
+
+export default DB;

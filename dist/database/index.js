@@ -1,12 +1,13 @@
-"use strict"; function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _sequelize = require('sequelize'); var _sequelize2 = _interopRequireDefault(_sequelize);
-var _database = require('../config/database'); var _database2 = _interopRequireDefault(_database);
-var _Aluno = require('../models/Aluno'); var _Aluno2 = _interopRequireDefault(_Aluno);
-var _User = require('../models/User'); var _User2 = _interopRequireDefault(_User);
-var _Photo = require('../models/Photo'); var _Photo2 = _interopRequireDefault(_Photo);
+"use strict";Object.defineProperty(exports, "__esModule", {value: true}); function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }var _mongoose = require('mongoose'); var _mongoose2 = _interopRequireDefault(_mongoose);
 
-const models = [_Aluno2.default, _User2.default, _Photo2.default];
+_mongoose2.default.connect(process.env.CONNECTIONSTRING, { useNewUrlParser: true, useUnifiedTopology: true });
 
-const connection = new (0, _sequelize2.default)(_database2.default);
+var _UserModel = require('./models/UserModel'); var _UserModel2 = _interopRequireDefault(_UserModel);
 
-models.forEach((model) => model.init(connection));
-models.forEach((model) => model.associate && model.associate(connection.models));
+/* eslint-disable */
+class DB {
+
+
+}
+
+exports. default = DB;
