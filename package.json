@@ -1,8 +1,8 @@
 {
-  "name": "api-cruso-udemy",
+  "name": "api-teste-unicad",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "dist/server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon src/server.js",
